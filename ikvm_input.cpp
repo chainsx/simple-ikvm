@@ -32,7 +32,16 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath,
     pointerPath(ptrPath), udcName(udc)
 {
     hidUdcStream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-    hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
+    if (access(hidUdcPath, F_OK) == 0)
+    {
+        hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
+    }
+    else
+    {
+        std::cout<<"The HID UDC Path not found: "<<hidUdcPath<<std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
 }
 
 Input::~Input()
