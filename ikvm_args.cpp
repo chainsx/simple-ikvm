@@ -2,8 +2,10 @@
 
 #include <getopt.h>
 #include <rfb/rfb.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
+
+#include <iostream>
 
 namespace ikvm
 {
@@ -62,6 +64,27 @@ Args::Args(int argc, char* argv[]) :
                 calcFrameCRC = true;
                 break;
         }
+    }
+    if (videoPath.empty())
+    {
+        std::cout<<"The videoPath is not given."<<std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    if (keyboardPath.empty())
+    {
+        std::cout<<"The keyboardPath is not given."<<std::endl;
+    }
+    if (pointerPath.empty())
+    {
+        std::cout<<"The pointerPath is not given."<<std::endl;
+    }
+
+    std::cout<<"The videoPath is: "<<videoPath<<std::endl;
+
+    if (access(videoPath.c_str(), F_OK) != 0)
+    {
+        std::cout<<"The videoPath is not found: "<<videoPath<<std::endl;
+        std::exit(EXIT_FAILURE);
     }
 }
 

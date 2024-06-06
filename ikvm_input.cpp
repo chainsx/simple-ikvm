@@ -3,13 +3,11 @@
 #include "ikvm_server.hpp"
 #include "scancodes.hpp"
 
-#include <err.h>
-#include <errno.h>
+#include <cerrno>
 #include <chrono>
 #include <thread>
 #include <fcntl.h>
 #include <rfb/keysym.h>
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <iostream>
 
@@ -32,7 +30,7 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath,
     }
     else
     {
-        std::cout<<"The HID UDC Path not found: "<<hidUdcPath<<std::endl;
+        std::cout<<"The HID UDC Path is not found: "<<hidUdcPath<<std::endl;
         std::exit(EXIT_FAILURE);
     }
 
@@ -98,12 +96,12 @@ void Input::connect()
     }
     catch (fs::filesystem_error& e)
     {
-        std::cout<<"Failed to search USB virtual hub port"<<e.what()<<std::endl;
+        std::cout<<"Failed to search USB virtual hub port: "<<e.what()<<std::endl;
         return;
     }
     catch (std::ofstream::failure& e)
     {
-        std::cout<<"Failed to connect HID gadget"<<e.what()<<std::endl;
+        std::cout<<"Failed to connect HID gadget: "<<e.what()<<std::endl;
         return;
     }
 
@@ -113,7 +111,7 @@ void Input::connect()
                           O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (keyboardFd < 0)
         {
-            std::cout<<"Failed to open input device"<<keyboardPath.c_str()<<strerror(errno)<<std::endl;
+            std::cout<<"Failed to open input device: "<<keyboardPath.c_str()<<strerror(errno)<<std::endl;
         }
     }
 
@@ -122,7 +120,7 @@ void Input::connect()
         pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (pointerFd < 0)
         {
-            std::cout<<"Failed to open input device"<<pointerPath.c_str()<<strerror(errno)<<std::endl;
+            std::cout<<"Failed to open input device: "<<pointerPath.c_str()<<strerror(errno)<<std::endl;
         }
     }
 }
@@ -147,7 +145,7 @@ void Input::disconnect()
     }
     catch (std::ofstream::failure& e)
     {
-        std::cout<<"Failed to disconnect HID gadget"<<e.what()<<std::endl;
+        std::cout<<"Failed to disconnect HID gadget: "<<e.what()<<std::endl;
     }
 }
 
@@ -539,7 +537,7 @@ bool Input::writeKeyboard(const uint8_t* report)
         {
             if (errno != ESHUTDOWN)
             {
-                std::cout<<"Failed to write keyboard report"<<strerror(errno)<<std::endl;
+                std::cout<<"Failed to write keyboard report: "<<strerror(errno)<<std::endl;
             }
 
             break;
@@ -570,7 +568,7 @@ void Input::writePointer(const uint8_t* report)
         {
             if (errno != ESHUTDOWN)
             {
-                std::cout<<"Failed to write pointer report"<<strerror(errno)<<std::endl;
+                std::cout<<"Failed to write pointer report: "<<strerror(errno)<<std::endl;
             }
 
             break;

@@ -15,6 +15,6 @@ the BMC, the application can be started with the following command:
 
 For example:
 
-`simple-ikvm -v /dev/video0 -i /dev/hidg0`
+`simple-ikvm -v /dev/video0 -k /dev/hidg0 -p /dev/hidg1`
 
 https://github.com/openbmc/obmc-ikvm.git

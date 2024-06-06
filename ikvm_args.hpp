@@ -130,7 +130,7 @@ class Args
 
   private:
     /* @brief Prints the application usage to stderr */
-    void printUsage();
+    static void printUsage();
 
     /*
      * @brief Desired frame rate (in frames per second) of the video

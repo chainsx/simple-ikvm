@@ -59,10 +59,10 @@ class Manager
     bool serverDone;
     /* @brief Boolean to indicate that video operations are complete */
     bool videoDone;
-    /* @brief Input object */
-    Input input;
     /* @brief Video object */
     Video video;
+    /* @brief Input object */
+    Input input;
     /* @brief RFB server object */
     Server server;
     /* @brief Condition variable to enable waiting for thread completion */

@@ -6,9 +6,9 @@ namespace ikvm
 {
 Manager::Manager(const Args& args) :
     continueExecuting(true), serverDone(false), videoDone(true),
-    input(args.getKeyboardPath(), args.getPointerPath(), args.getUdcName()),
     video(args.getVideoPath(), input, args.getFrameRate(),
           args.getSubsampling()),
+    input(args.getKeyboardPath(), args.getPointerPath(), args.getUdcName()),
     server(args, input, video)
 {}
 
