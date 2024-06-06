@@ -372,18 +372,6 @@ void Video::start()
     width = fmt.fmt.pix.width;
     pixelformat = fmt.fmt.pix.pixelformat;
 
-    std::cout<<"The vidoe pixel format is: "<<pixelformat<<std::endl;
-
-    if (pixelformat == V4L2_PIX_FMT_YUV422P)
-    {
-        std::cout<<"The video pixel format is V4L2_PIX_FMT_YUV422P"<<std::endl;
-    }
-
-    if (pixelformat == V4L2_PIX_FMT_YUV422M)
-    {
-        std::cout<<"The video pixel format is V4L2_PIX_FMT_YUV422M"<<std::endl;
-    }
-
     if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
     {
         std::cout<<"Pixel Format not supported"<<pixelformat<<std::endl;

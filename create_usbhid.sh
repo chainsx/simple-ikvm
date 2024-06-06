@@ -1,7 +1,7 @@
 #!/bin/sh
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/simple_hid"
-dev_name="1e6a0000.usb-vhub"
+dev_name="fcc00000.dwc3"
 
 create_hid() {
     # create gadget
@@ -125,23 +125,23 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! grep -q "${dev_name}:p" UDC; then
+    if ! grep -q "${dev_name}" UDC; then
         i=0
         num_ports=5
-        base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
-        while [ "${i}" -lt "${num_ports}" ]; do
-            port=$(("${i}" + 1))
-            i="${port}"
-            if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
-                break
-            fi
-        done
-        echo "${dev_name}:p${port}" > UDC
+        base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}"
+        #while [ "${i}" -lt "${num_ports}" ]; do
+        #    port=$(("${i}" + 1))
+        #    i="${port}"
+        #    if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
+        #        break
+        #    fi
+        #done
+        echo "${dev_name}" > UDC
     fi
 }
 
 disconnect_hid() {
-    if grep -q "${dev_name}:p" UDC; then
+    if grep -q "${dev_name}" UDC; then
         echo "" > UDC
     fi
 }
