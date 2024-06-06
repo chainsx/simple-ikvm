@@ -22,11 +22,11 @@ Args::Args(int argc, char* argv[]) :
                              {"calcCRC", 0, 0, 'c'},
                              {0, 0, 0, 0}};
                              
-    //if (argc == 1)
-    //{
-    //    Args::printUsage();
-    //    std::exit(EXIT_FAILURE);
-    //}
+    if (argc == 1)
+    {
+        Args::printUsage();
+        std::exit(EXIT_FAILURE);
+    }
         
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)

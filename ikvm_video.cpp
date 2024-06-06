@@ -377,6 +377,7 @@ void Video::start()
     if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
     {
         std::cout<<"Pixel Format not supported"<<pixelformat<<std::endl;
+        std::exit(EXIT_FAILURE);
     }
 
     resize();
