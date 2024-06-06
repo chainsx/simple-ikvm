@@ -14,22 +14,12 @@
 #include <unistd.h>
 #include <iostream>
 
-//#include <phosphor-logging/elog-errors.hpp>
-//#include <phosphor-logging/elog.hpp>
-//#include <phosphor-logging/log.hpp>
-//#include <xyz/openbmc_project/Common/Device/error.hpp>
-//#include <xyz/openbmc_project/Common/File/error.hpp>
-
 namespace ikvm
 {
 
 const int Video::bitsPerSample(8);
 const int Video::bytesPerPixel(4);
 const int Video::samplesPerPixel(3);
-
-//using namespace phosphor::logging;
-//using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
-//using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
@@ -381,6 +371,8 @@ void Video::start()
     height = fmt.fmt.pix.height;
     width = fmt.fmt.pix.width;
     pixelformat = fmt.fmt.pix.pixelformat;
+
+    std::cout<<"The vidoe pixel format is: "<<pixelformat<<std::endl;
 
     if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
     {

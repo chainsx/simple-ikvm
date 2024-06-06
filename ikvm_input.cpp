@@ -13,17 +13,11 @@
 #include <sys/types.h>
 #include <iostream>
 
-//#include <phosphor-logging/elog-errors.hpp>
-//#include <phosphor-logging/elog.hpp>
-//#include <phosphor-logging/log.hpp>
-//#include <xyz/openbmc_project/Common/File/error.hpp>
 
 namespace fs = std::filesystem;
 
 namespace ikvm
 {
-//using namespace phosphor::logging;
-//using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath,
              const std::string& udc) :
