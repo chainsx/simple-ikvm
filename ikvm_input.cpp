@@ -31,7 +31,7 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath,
     else
     {
         std::cout<<"The HID UDC Path is not found: "<<hidUdcPath<<std::endl;
-        std::exit(EXIT_FAILURE);
+        //std::exit(EXIT_FAILURE);
     }
 
 }

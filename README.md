@@ -17,4 +17,11 @@ For example:
 
 `simple-ikvm -v /dev/video0 -k /dev/hidg0 -p /dev/hidg1`
 
+## Build
+
+```
+sudo apt-get install libboost-dev libvncserver-dev
+make -j4
+```
+
 https://github.com/openbmc/obmc-ikvm.git

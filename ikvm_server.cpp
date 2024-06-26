@@ -5,21 +5,14 @@
 
 #include <boost/crc.hpp>
 #include <iostream>
-//#include <phosphor-logging/elog-errors.hpp>
-//#include <phosphor-logging/elog.hpp>
-//#include <phosphor-logging/log.hpp>
-//#include <xyz/openbmc_project/Common/error.hpp>
 
 namespace ikvm
 {
 
-//using namespace phosphor::logging;
-//using namespace sdbusplus::xyz::openbmc_project::Common::Error;
-
 Server::Server(const Args& args, Input& i, Video& v) :
     pendingResize(false), frameCounter(0), numClients(0), input(i), video(v)
 {
-    std::string ip("localhost");
+    std::string ip("0.0.0.0");
     const Args::CommandLine& commandLine = args.getCommandLine();
     int argc = commandLine.argc;
 

@@ -24,7 +24,7 @@ const int Video::samplesPerPixel(3);
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p), pixelformat(V4L2_PIX_FMT_JPEG)
+    path(p), pixelformat(V4L2_PIX_FMT_YUYV)
 {}
 
 Video::~Video()
@@ -375,7 +375,15 @@ void Video::start()
     if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
     {
         std::cout<<"Pixel Format not supported"<<pixelformat<<std::endl;
-        std::exit(EXIT_FAILURE);
+        if (pixelformat == V4L2_PIX_FMT_MJPEG)
+        {
+            std::cout<<"Pixel Format is MJPEG"<<std::endl;
+        }
+        if (pixelformat == V4L2_PIX_FMT_YUYV)
+        {
+            std::cout<<"Pixel Format is YUYV"<<std::endl;
+        }
+        //std::exit(EXIT_FAILURE);
     }
 
     resize();
